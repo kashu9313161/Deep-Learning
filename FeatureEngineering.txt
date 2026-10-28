@@ -1,0 +1,82 @@
+Feature engineering is useful in almost all Machine Learning algorithms, but the amount of feature engineering required depends on the algorithm and the dataset.
+
+Since you're learning ML and Deep Learning, remember this key rule: Linear models usually need more feature engineering than tree-based models.
+1. Feature engineering requirements by algorithm
+    Algorithm	Feature engineering required?	What to do
+    Linear Regression	High	Handle outliers, scaling, polynomial features, transformations
+    Logistic Regression	High	Encoding, scaling, transformations, interaction features
+    KNN	High	Scaling, encoding, feature selection
+    SVM	High	Scaling, encoding, feature selection
+    Naive Bayes	Moderate	Choose suitable features and distributions
+    Decision Tree	Low–Moderate	Encoding, missing values, useful feature creation
+    Random Forest	Low–Moderate	Encoding, missing values, feature creation
+    Gradient Boosting	Low–Moderate	Encoding, missing values, domain-specific features
+    XGBoost	Low–Moderate	Encoding, missing values, feature creation
+    K-Means Clustering	High	Scaling, feature selection, outlier handling
+    PCA	High	Scaling and numerical feature preparation
+    Neural Networks	Moderate–High	Scaling, encoding, missing values, suitable representations
+    CNN	Low manual feature engineering	Image preprocessing and augmentation
+    RNN / LSTM	Moderate	Sequence preparation, normalization, time-step creation
+    Transformers / LLMs	Moderate	Tokenization, attention masks, data formatting
+    Low manual feature engineering does not mean you can skip data preparation.
+2. What feature engineering should you apply?
+
+1. Feature scaling
+
+StandardScaler or MinMaxScaler.
+
+Especially important for Linear/Logistic Regression, KNN, SVM, K-Means, PCA and many neural networks.
+
+
+
+
+2. Categorical encoding
+
+OneHotEncoder, OrdinalEncoder, or appropriate categorical handling.
+
+Useful for most traditional ML algorithms that require numerical inputs.
+
+
+
+
+3. Transformations and interaction features
+
+Log transformation, polynomial features, ratios, and domain-specific combinations.
+
+Often useful for linear models and when relationships between features are nonlinear.
+
+
+
+
+4. Feature selection
+
+SelectKBest, mutual information, or model-based selection.
+
+Useful when you have many irrelevant or redundant features, regardless of the algorithm.
+
+
+
+
+5. Domain-specific features
+
+Extract age from date of birth, month from timestamps, or price per unit from price and quantity.
+
+Potentially valuable for almost any model when the new feature captures meaningful information.
+
+
+
+3. Important interview concept
+Tree-based models vs. distance-based and gradient-based models
+- Decision Tree, Random Forest, XGBoost: Usually do not require feature scaling because splits depend on feature thresholds. Encoding and missing-value handling may still be necessary.
+- KNN, K-Means, SVM: Scaling is often essential because distances or margins depend on feature magnitudes.
+- Linear and Logistic Regression: Scaling helps optimization; transformations and interaction features may improve the model's ability to represent the relationship.
+- Neural Networks: Scaling numerical inputs and encoding categorical inputs are usually important for stable training.
+4. The workflow you should follow for every ML project
+1. Split data into training and test sets.
+2. Handle missing values.
+3. Encode categorical variables.
+4. Scale numerical features when appropriate for the algorithm.
+5. Perform feature creation and selection when useful.
+6. Train and evaluate the model.
+7. Tune the features and model using cross-validation.
+Fit learned preprocessing steps only on the training data, ideally through a scikit-learn Pipeline or ColumnTransformer, to avoid data leakage.
